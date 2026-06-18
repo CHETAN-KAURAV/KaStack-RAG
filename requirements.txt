@@ -1,0 +1,11 @@
+pandas~=3.0.3
+numpy~=2.4.6
+sentence-transformers
+faiss-cpu
+transformers~=5.12.1
+torch
+streamlit
+tqdm~=4.68.2
+scikit-learn~=1.9.0
+yake~=0.7.3
+nltk~=3.9.4
