@@ -1,0 +1,411 @@
+{
+  "habits": [
+    {
+      "habit": "it.",
+      "count": 211
+    },
+    {
+      "habit": "animals.",
+      "count": 97
+    },
+    {
+      "habit": "it!",
+      "count": 96
+    },
+    {
+      "habit": "dogs.",
+      "count": 83
+    },
+    {
+      "habit": "my job.",
+      "count": 65
+    },
+    {
+      "habit": "working with kids.",
+      "count": 62
+    },
+    {
+      "habit": "them too.",
+      "count": 57
+    },
+    {
+      "habit": "their music.",
+      "count": 51
+    },
+    {
+      "habit": "getting lost in a good book.",
+      "count": 49
+    },
+    {
+      "habit": "to read.",
+      "count": 46
+    },
+    {
+      "habit": "being outdoors.",
+      "count": 45
+    },
+    {
+      "habit": "it too.",
+      "count": 45
+    },
+    {
+      "habit": "helping people.",
+      "count": 42
+    },
+    {
+      "habit": "do those things too.",
+      "count": 42
+    },
+    {
+      "habit": "to cook.",
+      "count": 40
+    },
+    {
+      "habit": "to cook too.",
+      "count": 39
+    },
+    {
+      "habit": "keep busy.",
+      "count": 39
+    },
+    {
+      "habit": "do a lot of the same things.",
+      "count": 38
+    },
+    {
+      "habit": "spending time with them.",
+      "count": 37
+    },
+    {
+      "habit": "them.",
+      "count": 35
+    },
+    {
+      "habit": "cats.",
+      "count": 35
+    },
+    {
+      "habit": "learning new things.",
+      "count": 34
+    },
+    {
+      "habit": "to read too. What are some of your favorite books?",
+      "count": 34
+    },
+    {
+      "habit": "to read too! What are some of your favorite books?",
+      "count": 33
+    },
+    {
+      "habit": "spending time with my family too.",
+      "count": 32
+    },
+    {
+      "habit": "to read too.",
+      "count": 32
+    },
+    {
+      "habit": "spending time with my family.",
+      "count": 28
+    },
+    {
+      "habit": "golden retrievers.",
+      "count": 26
+    },
+    {
+      "habit": "that one too.",
+      "count": 26
+    },
+    {
+      "habit": "my job!",
+      "count": 24
+    },
+    {
+      "habit": "music.",
+      "count": 24
+    },
+    {
+      "habit": "to travel.",
+      "count": 24
+    },
+    {
+      "habit": "golden retrievers! They're so friendly.",
+      "count": 23
+    },
+    {
+      "habit": "listening to music.",
+      "count": 23
+    },
+    {
+      "habit": "trying new things.",
+      "count": 23
+    },
+    {
+      "habit": "the beach.",
+      "count": 22
+    },
+    {
+      "habit": "kids.",
+      "count": 22
+    },
+    {
+      "habit": "read, write, and play video games.",
+      "count": 22
+    },
+    {
+      "habit": "to cook too, but I'm not very good at it.",
+      "count": 21
+    },
+    {
+      "habit": "cats!",
+      "count": 20
+    },
+    {
+      "habit": "trying new recipes.",
+      "count": 20
+    },
+    {
+      "habit": "to cook too. What's your favorite thing to cook?",
+      "count": 20
+    },
+    {
+      "habit": "pasta.",
+      "count": 20
+    },
+    {
+      "habit": "the outdoors.",
+      "count": 20
+    },
+    {
+      "habit": "spending time with my kids.",
+      "count": 19
+    },
+    {
+      "habit": "them!",
+      "count": 19
+    },
+    {
+      "habit": "it here.",
+      "count": 19
+    },
+    {
+      "habit": "reading.",
+      "count": 19
+    },
+    {
+      "habit": "that movie too.",
+      "count": 19
+    },
+    {
+      "habit": "read, go for walks, and spend time with my family.",
+      "count": 19
+    }
+  ],
+  "personal_facts": [
+    {
+      "fact": "software engineer.",
+      "count": 105
+    },
+    {
+      "fact": "teacher.",
+      "count": 82
+    },
+    {
+      "fact": "nurse.",
+      "count": 42
+    },
+    {
+      "fact": "writer.",
+      "count": 32
+    },
+    {
+      "fact": "too.",
+      "count": 30
+    },
+    {
+      "fact": "stay-at-home mom.",
+      "count": 23
+    },
+    {
+      "fact": "wedding planner.",
+      "count": 14
+    },
+    {
+      "fact": "teacher. I teach kindergarten.",
+      "count": 14
+    },
+    {
+      "fact": "only child.",
+      "count": 14
+    },
+    {
+      "fact": "graphic designer.",
+      "count": 14
+    },
+    {
+      "fact": "musician.",
+      "count": 13
+    },
+    {
+      "fact": "chef.",
+      "count": 13
+    },
+    {
+      "fact": "police officer.",
+      "count": 13
+    },
+    {
+      "fact": "to the park.",
+      "count": 13
+    },
+    {
+      "fact": "web developer.",
+      "count": 11
+    },
+    {
+      "fact": "is my best friend.",
+      "count": 10
+    },
+    {
+      "fact": "personal trainer.",
+      "count": 10
+    },
+    {
+      "fact": "veterinarian.",
+      "count": 10
+    },
+    {
+      "fact": "lawyer.",
+      "count": 9
+    },
+    {
+      "fact": "pilot.",
+      "count": 9
+    },
+    {
+      "fact": "on rainy days.",
+      "count": 9
+    },
+    {
+      "fact": "and kids.",
+      "count": 9
+    },
+    {
+      "fact": "artist.",
+      "count": 9
+    },
+    {
+      "fact": "doctor.",
+      "count": 8
+    },
+    {
+      "fact": "big fan of the Golden State Warriors.",
+      "count": 8
+    },
+    {
+      "fact": "financial analyst for a brewery.",
+      "count": 8
+    },
+    {
+      "fact": "stay at home mom.",
+      "count": 8
+    },
+    {
+      "fact": "librarian.",
+      "count": 8
+    },
+    {
+      "fact": "student.",
+      "count": 8
+    },
+    {
+      "fact": "too. What kind of dog do you have?",
+      "count": 8
+    },
+    {
+      "fact": "big fan of classic rock.",
+      "count": 7
+    },
+    {
+      "fact": "and cat.",
+      "count": 7
+    },
+    {
+      "fact": "chef at a local restaurant.",
+      "count": 7
+    },
+    {
+      "fact": "accountant.",
+      "count": 7
+    },
+    {
+      "fact": "Percy.",
+      "count": 7
+    },
+    {
+      "fact": "barista at a local coffee shop.",
+      "count": 7
+    },
+    {
+      "fact": "social media manager for a small business.",
+      "count": 7
+    },
+    {
+      "fact": "left me.",
+      "count": 7
+    },
+    {
+      "fact": "teacher. I love working with kids.",
+      "count": 6
+    },
+    {
+      "fact": "bit of a foodie.",
+      "count": 6
+    },
+    {
+      "fact": "teacher at a local elementary school.",
+      "count": 6
+    },
+    {
+      "fact": "big fan of historical fiction.",
+      "count": 6
+    },
+    {
+      "fact": "teacher. I teach elementary school.",
+      "count": 6
+    },
+    {
+      "fact": "nurse at a hospital.",
+      "count": 6
+    },
+    {
+      "fact": "farmer.",
+      "count": 6
+    },
+    {
+      "fact": "with his behavioral issues.",
+      "count": 6
+    },
+    {
+      "fact": "hiking later.",
+      "count": 6
+    },
+    {
+      "fact": "so much.",
+      "count": 5
+    },
+    {
+      "fact": "dancer and my spouse is a weather forecaster.",
+      "count": 5
+    },
+    {
+      "fact": "engineer.",
+      "count": 5
+    }
+  ],
+  "communication_style": {
+    "avg_words": 11.33,
+    "question_ratio": 0.23,
+    "exclamation_ratio": 0.53
+  }
+}
