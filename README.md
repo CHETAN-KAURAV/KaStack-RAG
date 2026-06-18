@@ -2,7 +2,21 @@
 
 ## Persona-Aware Conversational RAG System
 
-### Overview
+### Author
+
+Chetan Kaurav
+
+### Live Demo
+
+https://kastack-rag-gjqfpaf9dd4aleqqygfryg.streamlit.app/
+
+### GitHub Repository
+
+https://github.com/CHETAN-KAURAV/KaStack-RAG
+
+---
+
+## Overview
 
 This project implements a Retrieval-Augmented Generation (RAG) system for conversational data.
 
@@ -10,52 +24,70 @@ The system processes conversations chronologically, detects topic transitions, c
 
 The goal was to build an end-to-end conversational memory system capable of:
 
-* Detecting topic changes over time
-* Creating topic-level summaries
-* Creating 100-message checkpoints
-* Extracting user personas
-* Retrieving relevant context
-* Answering user questions through a chatbot interface
+- Detecting topic changes over time
+- Creating topic-level summaries
+- Creating 100-message checkpoints
+- Extracting user personas
+- Retrieving relevant context
+- Answering user questions through a chatbot interface
 
 ---
 
 # System Architecture
-
+```
 Dataset (CSV)
-↓
-Conversation Parsing
-↓
-Topic Change Detection
-↓
-Topic Summaries
-↓
-100 Message Checkpoints
-↓
-Persona Extraction
-↓
-FAISS Vector Index
-↓
-Retriever
-↓
-Chatbot
-↓
-Streamlit UI
 
+↓
+
+Conversation Parsing
+
+↓
+
+Topic Change Detection
+
+↓
+
+Topic Summaries
+
+↓
+
+100 Message Checkpoints
+
+↓
+
+Persona Extraction
+
+↓
+
+FAISS Vector Index
+
+↓
+
+Retriever
+
+↓
+
+Chatbot
+
+↓
+
+Streamlit UI
+```
 ---
 
 # Dataset
 
 Input Dataset:
 
-* CSV file containing conversational data
-* Each row represents one conversation
-* Conversations are processed message-by-message in chronological order
+- CSV file containing conversational data
+- Each row represents one conversation
+- Conversations are processed message-by-message in chronological order
 
 Dataset Statistics:
 
-* Total Conversations: 11,001
-* Total Messages: 191,592
-* Average Messages per Conversation: ~17
+- Total Conversations: 11,001
+- Total Messages: 191,592
+- Average Messages per Conversation: ~17
 
 ---
 
@@ -81,16 +113,20 @@ This allows downstream modules to analyze topic transitions over time.
 
 ## Topic Change Detection
 
-Instead of treating an entire conversation as a single topic, topic boundaries are detected dynamically.
+A key requirement of the assignment was to avoid treating an entire conversation as a single topic.
+
+The system processes every conversation chronologically, message by message.
 
 ### Method
 
-1. Generate sentence embeddings for messages
-2. Compare semantic similarity between message windows
-3. Detect topic shifts when similarity drops below a threshold
-4. Create a new topic checkpoint
+1. Messages are grouped into semantic windows.
+2. Sentence embeddings are generated using Sentence Transformers (all-MiniLM-L6-v2).
+3. Semantic similarity is calculated between consecutive windows.
+4. If similarity drops below a predefined threshold, a topic boundary is created.
+5. A new topic checkpoint is started.
+6. A summary is generated only for that topic segment.
 
-This ensures that different discussion segments are stored separately.
+This allows a single conversation to contain multiple topic checkpoints.
 
 ### Example
 
@@ -106,11 +142,14 @@ Topic 3 → Messages 28–41
 
 Discussion about reading habits
 
+This ensures that retrieval can operate on meaningful conversation segments rather than entire conversations.
+
 ---
 
 ## Topic Detection Example
 
 ![Topic Detection](screenshots/02_data_pro_token_detect-a.png)
+
 ![Topic Detection](screenshots/02_data_pro_token_detect-b.png)
 
 ---
@@ -119,10 +158,10 @@ Discussion about reading habits
 
 For every detected topic segment:
 
-* Topic ID
-* Message Range
-* Keywords
-* Summary
+- Topic ID
+- Message Range
+- Keywords
+- Summary
 
 are generated and stored.
 
@@ -131,11 +170,13 @@ Example:
 Topic 1
 
 Summary:
+
 Discussion about moving to Portland and local recommendations.
 
 Topic 2
 
 Summary:
+
 Discussion about bookstores and reading interests.
 
 ---
@@ -143,6 +184,7 @@ Discussion about bookstores and reading interests.
 ## Topic Summary Example
 
 ![Topic Summaries](screenshots/03_topic_summaries.png)
+
 ![Topic Summaries](screenshots/03-topic_summaries-b.png)
 
 ---
@@ -153,9 +195,9 @@ Independent of topic segmentation, the system creates checkpoints every 100 mess
 
 Purpose:
 
-* Long-term conversational memory
-* Faster retrieval
-* Conversation compression
+- Long-term conversational memory
+- Faster retrieval
+- Conversation compression
 
 Example:
 
@@ -183,47 +225,84 @@ Each checkpoint contains a summary of its corresponding message range.
 
 # Part 2: Persona Extraction
 
-The system extracts structured persona information directly from conversation signals.
+The system extracts structured persona information directly from conversation content.
 
 No external APIs were used.
 
-The extracted persona includes:
+Persona extraction is performed at the conversation level.
 
-### Occupation
+### Occupation Extraction
+
+Pattern matching is used to detect statements such as:
+
+- I am a teacher
+- I work as a nurse
+- I am a firefighter
+- I am a librarian
+
+Detected occupations are stored in structured JSON format.
+
+### Hobby Extraction
+
+The system identifies activities and interests using conversational patterns such as:
+
+- I like ...
+- I love ...
+- I enjoy ...
+- My hobby is ...
 
 Examples:
 
-* Teacher
-* Nurse
-* Firefighter
-* Librarian
+- Reading
+- Gardening
+- Hiking
+- Cooking
+- Music
 
-### Hobbies & Interests
+### Personality Trait Extraction
 
-Examples:
-
-* Reading
-* Gardening
-* Hiking
-* Music
-* Cooking
-
-### Personality Traits
+Traits are inferred from observable conversation signals.
 
 Examples:
 
-* Friendly
-* Curious
-* Enthusiastic
-* Optimistic
+- Friendly
+- Curious
+- Enthusiastic
+- Optimistic
 
-### Communication Style
+Trait scores are accumulated based on message patterns and conversational behavior.
 
-Metrics:
+### Communication Style Extraction
 
-* Average words per message
-* Question ratio
-* Exclamation ratio
+The following metrics are calculated:
+
+- Average words per message
+- Question ratio
+- Exclamation ratio
+
+These metrics provide insight into how a user communicates.
+
+### Persona Output Format
+
+Example:
+
+```json
+{
+  "occupation": ["teacher"],
+  "hobbies": ["reading", "gardening"],
+  "traits": [
+    {
+      "trait": "friendly",
+      "score": 8
+    }
+  ],
+  "communication_style": {
+    "avg_words": 10.4,
+    "question_ratio": 0.28,
+    "exclamation_ratio": 0.51
+  }
+}
+```
 
 ---
 
@@ -253,7 +332,7 @@ Structured user persona information.
 
 Embeddings are generated using:
 
-sentence-transformers/all-MiniLM-L6-v2
+Sentence Transformers (all-MiniLM-L6-v2)
 
 and stored inside a FAISS vector index.
 
@@ -261,21 +340,61 @@ and stored inside a FAISS vector index.
 
 ## Retrieval Workflow
 
+The chatbot uses a Retrieval-Augmented Generation (RAG) pipeline.
+
+### Indexed Sources
+
+The FAISS vector database contains:
+
+- Topic Summaries
+- 100 Message Checkpoints
+- Persona Records
+
+### Retrieval Process
+
+When a user submits a question:
+
+1. The query is converted into an embedding.
+2. FAISS performs semantic similarity search.
+3. Relevant topic summaries are retrieved.
+4. Relevant checkpoint summaries are retrieved.
+5. Relevant persona records are retrieved.
+6. Retrieved context is combined.
+7. The chatbot generates an answer using the aggregated information.
+
+Workflow:
+```
 User Query
+
 ↓
+
 Query Embedding
+
 ↓
+
 FAISS Similarity Search
+
 ↓
-Retrieve Relevant Topics
+
+Retrieve Topic Summaries
+
 ↓
-Retrieve Relevant Checkpoints
+
+Retrieve Checkpoints
+
 ↓
-Retrieve Relevant Personas
+
+Retrieve Persona Records
+
 ↓
+
 Context Aggregation
+
 ↓
+
 Answer Generation
+```
+This approach ensures that answers are generated using both short-term topic memory and long-term checkpoint memory.
 
 ---
 
@@ -287,16 +406,16 @@ Supported Questions:
 
 ### Persona Questions
 
-* What kind of person is this user?
-* What are their habits?
-* What hobbies do they have?
-* How do they communicate?
+- What kind of person is this user?
+- What are their habits?
+- What hobbies do they have?
+- How do they communicate?
 
 ### Context Questions
 
-* Tell me about Portland
-* Tell me about teachers
-* Tell me about firefighters
+- Tell me about Portland
+- Tell me about teachers
+- Tell me about firefighters
 
 The chatbot retrieves relevant context from the RAG pipeline and generates answers using the retrieved information.
 
@@ -312,31 +431,31 @@ The chatbot retrieves relevant context from the RAG pipeline and generates answe
 
 ### Core Libraries
 
-* Python
-* Pandas
-* NumPy
+- Python
+- Pandas
+- NumPy
 
 ### Embeddings
 
-* Sentence Transformers
-* all-MiniLM-L6-v2
+- Sentence Transformers
+- all-MiniLM-L6-v2
 
 ### Vector Search
 
-* FAISS
+- FAISS
 
 ### NLP
 
-* Hugging Face Transformers
+- Hugging Face Transformers
 
 ### UI
 
-* Streamlit
+- Streamlit
 
 ---
 
 # Project Structure
-
+```
 KaStack-RAG/
 
 ├── app.py
@@ -346,6 +465,8 @@ KaStack-RAG/
 ├── retriever.py
 
 ├── answer_generator.py
+
+├── build_index.py
 
 ├── preprocessing/
 
@@ -360,6 +481,8 @@ KaStack-RAG/
 │ ├── checkpoint_builder.py
 
 │ ├── conversation_persona_builder.py
+
+│ ├── persona_extractor.py
 
 │ └── persona_cleaner.py
 
@@ -382,28 +505,29 @@ KaStack-RAG/
 ├── requirements.txt
 
 └── README.md
-
+```
 ---
 
 # Running Locally
 
 ## Clone Repository
 
-git clone <repository-url>
-
+```bash
+git clone https://github.com/CHETAN-KAURAV/KaStack-RAG.git
 cd KaStack-RAG
-
----
+```
 
 ## Install Dependencies
 
+```bash
 pip install -r requirements.txt
-
----
+```
 
 ## Run Application
 
+```bash
 streamlit run app.py
+```
 
 ---
 
@@ -430,6 +554,7 @@ Successfully implemented:
 # Deployment
 
 Live Demo:
+
 https://kastack-rag-gjqfpaf9dd4aleqqygfryg.streamlit.app/
 
 ---
