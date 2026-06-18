@@ -430,8 +430,7 @@ Successfully implemented:
 # Deployment
 
 Live Demo:
-
-[Network URL: http://10.144.86.34:8501]
+https://kastack-rag-gjqfpaf9dd4aleqqygfryg.streamlit.app/
 
 ---
 
