@@ -421,6 +421,92 @@ The chatbot retrieves relevant context from the RAG pipeline and generates answe
 
 ---
 
+# Round 2 Extensions
+
+The Round 2 implementation extends the original conversational RAG system with adaptive persona modeling, offline intent classification, conflict-aware retrieval, and synchronization architecture design.
+
+---
+
+# Part 5: Adaptive Persona Engine
+
+A new persona evolution module was implemented to track how user behavior changes across conversations over time.
+
+Rather than generating a single static persona, the system maintains a timeline of personality and communication changes.
+
+## Objective
+
+Detect:
+
+- Mood changes
+- Tone changes
+- Behavioral drift
+- Triggering topics or events
+
+---
+
+## Persona Drift Detection
+
+Each conversation is analyzed using:
+
+- Extracted personality traits
+- Communication style statistics
+- Question frequency
+- Exclamation frequency
+- Average message length
+
+From these signals the system generates:
+
+- Mood
+- Tone
+- Trigger
+
+for every conversation.
+
+Example:
+
+Day 1
+
+Mood: Enthusiastic
+
+Tone: Casual
+
+Trigger: Powell Books
+
+Day 4
+
+Mood: Enthusiastic
+
+Tone: Casual
+
+Trigger: Everglades
+
+Day 10
+
+Mood: Enthusiastic
+
+Tone: Casual
+
+Trigger: Lasagna
+
+---
+
+## Drift Timeline
+
+The output is stored in:
+
+```
+drift/drift_timeline.json
+```
+Example:
+```
+{
+  "day": 10,
+  "mood": "enthusiastic",
+  "tone": "casual",
+  "trigger": "lasagna"
+}
+```
+
 ## Chatbot Demo
 
 ![Chatbot Demo](screenshots/Deployment_Page.png)
