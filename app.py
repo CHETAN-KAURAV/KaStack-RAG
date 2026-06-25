@@ -22,9 +22,7 @@ feature = st.sidebar.selectbox(
     ]
 )
 
-# ==================================================
 # CHATBOT
-# ==================================================
 
 if feature == "Chatbot":
 
@@ -45,9 +43,7 @@ if feature == "Chatbot":
 
         st.success(answer)
 
-# ==================================================
 # DRIFT
-# ==================================================
 
 elif feature == "Persona Drift":
 
@@ -80,9 +76,7 @@ elif feature == "Persona Drift":
 
         st.error(str(e))
 
-# ==================================================
 # INTENT
-# ==================================================
 
 elif feature == "Intent Classifier":
 
@@ -110,9 +104,7 @@ elif feature == "Intent Classifier":
             f"Intent: {pred}"
         )
 
-# ==================================================
 # RESOLVER
-# ==================================================
 
 elif feature == "Conflict Resolver":
 
